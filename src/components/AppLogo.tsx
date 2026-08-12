@@ -14,11 +14,12 @@ const sizes = {
 }
 
 /**
- * Marca do app — logo oficial DOBBS (logo-dobbs-icon.png).
- * O arquivo-fonte tem fundo transparente; usamos o texto secundário da paleta
- * (#cbd5e1) como fundo — nunca branco puro — preservando o contraste entre o
- * "E" (navy escuro) e o "D" (gradiente azul→ciano), que se perderia sobre o
- * fundo quase-preto do app.
+ * Marca do app — logo oficial DOBBS, variante "dark" (logo-dobbs-icon-dark.png).
+ * O arquivo original tem o "E" em navy quase-preto, ótimo sobre branco mas
+ * invisível sobre o fundo da marca. Em vez de colocar uma placa clara atrás
+ * (que sempre acaba "lendo" como branco), a variante dark recolore o "E" para
+ * o texto principal da paleta (#f5f7fa) e mantém o "D" azul→ciano intacto —
+ * assim a logo flutua direto sobre o fundo quase-preto, sem placa.
  */
 export function AppLogo({ size = 'md', showWordmark = false, className = '' }: AppLogoProps) {
   const config = sizes[size]
@@ -27,18 +28,16 @@ export function AppLogo({ size = 'md', showWordmark = false, className = '' }: A
     <div className={`flex items-center gap-3 ${className}`}>
       <div className={`${config.box} relative shrink-0`}>
         <div
-          className="absolute inset-0 rounded-xl bg-dobbs-accent/25 blur-md"
+          className="absolute inset-0 rounded-xl bg-dobbs-accent/20 blur-lg"
           aria-hidden
         />
-        <div className="relative h-full w-full overflow-hidden rounded-xl bg-dobbs-muted shadow-lg shadow-dobbs-accent/20">
-          <img
-            src="/icons/logo-dobbs-icon.png"
-            alt="DOBBS"
-            width={config.icon}
-            height={config.icon}
-            className="h-full w-full object-contain p-[12%]"
-          />
-        </div>
+        <img
+          src="/icons/logo-dobbs-icon-dark.png"
+          alt="DOBBS"
+          width={config.icon}
+          height={config.icon}
+          className="relative h-full w-full object-contain drop-shadow-[0_4px_16px_rgba(0,163,255,0.35)]"
+        />
       </div>
       {showWordmark && (
         <div className="flex flex-col">
