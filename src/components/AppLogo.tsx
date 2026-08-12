@@ -15,9 +15,10 @@ const sizes = {
 
 /**
  * Marca do app — logo oficial DOBBS (logo-dobbs-icon.png).
- * O arquivo-fonte tem fundo transparente; usamos um fundo branco para preservar
- * o contraste original entre o "E" (navy escuro) e o "D" (gradiente azul→ciano),
- * que se perderia sobre o fundo quase-preto do app.
+ * O arquivo-fonte tem fundo transparente; usamos o texto secundário da paleta
+ * (#cbd5e1) como fundo — nunca branco puro — preservando o contraste entre o
+ * "E" (navy escuro) e o "D" (gradiente azul→ciano), que se perderia sobre o
+ * fundo quase-preto do app.
  */
 export function AppLogo({ size = 'md', showWordmark = false, className = '' }: AppLogoProps) {
   const config = sizes[size]
@@ -29,7 +30,7 @@ export function AppLogo({ size = 'md', showWordmark = false, className = '' }: A
           className="absolute inset-0 rounded-xl bg-dobbs-accent/25 blur-md"
           aria-hidden
         />
-        <div className="relative h-full w-full overflow-hidden rounded-xl bg-white shadow-lg shadow-dobbs-accent/20">
+        <div className="relative h-full w-full overflow-hidden rounded-xl bg-dobbs-muted shadow-lg shadow-dobbs-accent/20">
           <img
             src="/icons/logo-dobbs-icon.png"
             alt="DOBBS"
