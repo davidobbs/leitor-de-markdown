@@ -13,23 +13,31 @@ const sizes = {
   xl: { box: 'h-20 w-20', icon: 80, text: 'text-xl' },
 }
 
+/**
+ * Marca do app — reaproveita o sistema visual do componente Logo (dobbs.com.br):
+ * quadrado com gradiente accent-500→accent-600, glow suave e tipografia Space Grotesk.
+ */
 export function AppLogo({ size = 'md', showWordmark = false, className = '' }: AppLogoProps) {
   const config = sizes[size]
 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <div
-        className={`${config.box} relative flex shrink-0 items-center justify-center overflow-hidden rounded-2xl shadow-lg shadow-dobbs-accent/20 ring-1 ring-dobbs-accent/30`}
-        aria-hidden
-      >
+      <div className={`${config.box} relative shrink-0`}>
+        <div
+          className="absolute inset-0 rounded-xl bg-dobbs-accent/25 blur-md"
+          aria-hidden
+        />
         <LogoMark size={config.icon} />
       </div>
       {showWordmark && (
-        <div>
-          <p className={`font-display font-bold tracking-tight text-dobbs-text ${config.text}`}>
-            Leitor MD
-          </p>
-          <p className="text-xs text-dobbs-muted">by DOBBS</p>
+        <div className="flex flex-col">
+          <span className="font-display text-sm font-semibold tracking-tight text-neutral-900 dark:text-dobbs-text">
+            leitor<span className="text-dobbs-accent-deep dark:text-dobbs-accent">md</span>
+          </span>
+          <span className="flex items-center gap-1.5 text-[11px] text-neutral-500 dark:text-dobbs-muted">
+            <span className="h-1.5 w-1.5 rounded-full bg-dobbs-accent" aria-hidden />
+            by dobbs
+          </span>
         </div>
       )}
     </div>
@@ -41,64 +49,30 @@ export function LogoMark({ size = 512 }: { size?: number }) {
     <svg
       width={size}
       height={size}
-      viewBox="0 0 512 512"
+      viewBox="0 0 96 96"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       aria-label="Leitor MD"
+      className="relative"
     >
       <defs>
-        <linearGradient id="dobbs-bg" x1="0" y1="0" x2="512" y2="512">
-          <stop offset="0%" stopColor="#0B1020" />
-          <stop offset="100%" stopColor="#0F172A" />
-        </linearGradient>
-        <linearGradient id="dobbs-glow" x1="128" y1="64" x2="384" y2="448">
+        <linearGradient id="dobbsAccent" x1="8" y1="8" x2="88" y2="88" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stopColor="#14F4C9" />
-          <stop offset="100%" stopColor="#22D3EE" />
+          <stop offset="100%" stopColor="#06B6D4" />
         </linearGradient>
-        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="8" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
       </defs>
-      <rect width="512" height="512" rx="112" fill="url(#dobbs-bg)" />
-      <rect
-        x="24"
-        y="24"
-        width="464"
-        height="464"
-        rx="96"
-        stroke="url(#dobbs-glow)"
-        strokeOpacity="0.35"
-        strokeWidth="2"
-        fill="none"
-      />
-      <g filter="url(#glow)">
-        <path
-          d="M148 148h216v28H148v-28zm0 72h176v28H148v-28zm0 72h128v28H148v-28z"
-          fill="url(#dobbs-glow)"
-          fillOpacity="0.95"
-        />
-        <path
-          d="M332 356l52 52-20 20-52-52 20-20z"
-          fill="#14F4C9"
-        />
-        <circle cx="384" cy="384" r="10" fill="#22D3EE" />
-      </g>
+      <rect x="4" y="4" width="88" height="88" rx="22" fill="url(#dobbsAccent)" />
       <text
-        x="256"
-        y="430"
+        x="48"
+        y="66"
         textAnchor="middle"
-        fill="#94A3B8"
-        fontFamily="system-ui, sans-serif"
+        fill="#0B1020"
+        fontFamily="'Space Grotesk', system-ui, sans-serif"
         fontSize="44"
-        fontWeight="600"
-        letterSpacing="8"
+        fontWeight="700"
       >
-        MD
+        M
       </text>
     </svg>
   )

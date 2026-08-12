@@ -7,17 +7,29 @@
   --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-serif: "Source Serif 4", Georgia, serif;
 
-  /* DOBBS palette — dobbs.com.br */
-  --color-dobbs-bg: #0b1020;
-  --color-dobbs-surface: #0f172a;
-  --color-dobbs-elevated: #1e293b;
-  --color-dobbs-border: #334155;
-  --color-dobbs-accent: #14f4c9;
-  --color-dobbs-accent-hover: #22d3ee;
-  --color-dobbs-accent-muted: #06b6d4;
-  --color-dobbs-text: #e5e7eb;
-  --color-dobbs-muted: #94a3b8;
-  --color-dobbs-subtle: #64748b;
+  /* DOBBS brand palette — extraída de dobbs.com.br (tailwind.config.ts) */
+  /* primary (grafite/azul-petróleo escuro) */
+  --color-dobbs-bg: #0b1020; /* primary-50 */
+  --color-dobbs-surface: #0f172a; /* primary-100 */
+  --color-dobbs-elevated: #1e293b; /* primary-200 */
+  --color-dobbs-line: #334155; /* primary-300 */
+
+  /* accent (ciano/teal de tecnologia) */
+  --color-dobbs-accent: #14f4c9; /* accent-500 */
+  --color-dobbs-accent-hover: #22d3ee; /* accent-400 */
+  --color-dobbs-accent-muted: #06b6d4; /* accent-600 */
+  --color-dobbs-accent-deep: #0891b2; /* accent-700 */
+
+  /* neutral (texto em fundo escuro) */
+  --color-dobbs-text: #e5e7eb; /* neutral-200 */
+  --color-dobbs-muted: #9ca3af; /* neutral-400 */
+  --color-dobbs-subtle: #6b7280; /* neutral-500 */
+  --color-dobbs-border: #1f2937; /* neutral-800 — borda padrão do site */
+
+  /* feedback */
+  --color-dobbs-success: #10b981;
+  --color-dobbs-warning: #f59e0b;
+  --color-dobbs-error: #ef4444;
 
   --color-light-bg: #f9fafb;
   --color-light-surface: #ffffff;
@@ -58,6 +70,25 @@ body {
 :focus-visible {
   outline: 2px solid var(--color-dobbs-accent);
   outline-offset: 2px;
+}
+
+/* Scrollbar — mesmo tratamento do dobbs.com.br */
+.dark ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: var(--color-dobbs-surface);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgb(20 244 201 / 0.3);
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgb(20 244 201 / 0.5);
 }
 
 .dobbs-grid-bg {
