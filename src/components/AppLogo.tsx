@@ -63,9 +63,18 @@ export function LogoMark({ size = 512 }: { size?: number }) {
         </linearGradient>
       </defs>
       <rect x="4" y="4" width="88" height="88" rx="22" fill="url(#dobbsAccent)" />
-      {/* Lupa — ícone de assinatura recorrente da marca DOBBS */}
-      <circle cx="42" cy="42" r="15" fill="none" stroke="#05070A" strokeWidth="7" />
-      <line x1="53" y1="53" x2="66" y2="66" stroke="#05070A" strokeWidth="7" strokeLinecap="round" />
+      {/* "D" — mesmo mark do ícone do dobbs.com.br (componente Logo, variante icon) */}
+      <text
+        x="48"
+        y="66"
+        textAnchor="middle"
+        fill="#05070A"
+        fontFamily="'Space Grotesk', system-ui, sans-serif"
+        fontSize="44"
+        fontWeight="700"
+      >
+        D
+      </text>
     </svg>
   )
 }
