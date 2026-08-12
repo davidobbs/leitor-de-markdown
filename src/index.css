@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+
+  /* DOBBS palette — dobbs.com.br */
+  --color-dobbs-bg: #0b1020;
+  --color-dobbs-surface: #0f172a;
+  --color-dobbs-elevated: #1e293b;
+  --color-dobbs-border: #334155;
+  --color-dobbs-accent: #14f4c9;
+  --color-dobbs-accent-hover: #22d3ee;
+  --color-dobbs-accent-muted: #06b6d4;
+  --color-dobbs-text: #e5e7eb;
+  --color-dobbs-muted: #94a3b8;
+  --color-dobbs-subtle: #64748b;
+
+  --color-light-bg: #f9fafb;
+  --color-light-surface: #ffffff;
+  --color-light-text: #111827;
+  --color-light-muted: #6b7280;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--font-sans);
+  background-color: var(--color-light-bg);
+  color: var(--color-light-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.dark body {
+  background-color: var(--color-dobbs-bg);
+  color: var(--color-dobbs-text);
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-dobbs-accent);
+  outline-offset: 2px;
+}
+
+.dobbs-grid-bg {
+  background-image:
+    linear-gradient(rgba(20, 244, 201, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 244, 201, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.dark .dobbs-grid-bg {
+  background-image:
+    linear-gradient(rgba(20, 244, 201, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 244, 201, 0.06) 1px, transparent 1px);
+}
+
+.dobbs-glow {
+  background: radial-gradient(
+    ellipse 80% 50% at 50% -20%,
+    rgba(20, 244, 201, 0.15),
+    transparent
+  );
+}
+
+.card-surface {
+  @apply rounded-2xl border border-neutral-200 bg-white dark:border-dobbs-border/60 dark:bg-dobbs-surface;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-xl bg-dobbs-accent px-5 py-3 text-sm font-semibold text-dobbs-bg transition hover:bg-dobbs-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dobbs-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-dobbs-bg;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center rounded-xl border border-neutral-200 bg-transparent px-4 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 dark:border-dobbs-border dark:text-dobbs-text dark:hover:bg-dobbs-elevated;
+}
