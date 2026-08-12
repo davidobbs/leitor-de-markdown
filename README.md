@@ -1,6 +1,8 @@
 # Leitor MD
 
-PWA instalável para leitura de arquivos Markdown (GFM). Processamento **100% client-side** — seus arquivos nunca saem do dispositivo.
+PWA instalável para leitura de arquivos Markdown (GFM), com identidade visual [DOBBS](https://dobbs.com.br). Processamento **100% client-side** — seus arquivos nunca saem do dispositivo.
+
+**Repositório:** https://github.com/davidobbs/leitor-de-markdown
 
 ## Funcionalidades
 
