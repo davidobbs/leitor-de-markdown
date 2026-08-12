@@ -2,6 +2,13 @@ import { useCallback, useEffect, useState } from 'react'
 import { listRecentFiles, deleteFile, saveFile } from '../lib/storage'
 import type { StoredFile } from '../lib/file-utils'
 import { isMarkdownFile, readFileAsText } from '../lib/file-utils'
+import {
+  detectBrowser,
+  detectPlatform,
+  isStandaloneDisplay,
+  type BrowserName,
+  type Platform,
+} from '../lib/platform'
 
 export function useRecentFiles() {
   const [files, setFiles] = useState<StoredFile[]>([])
@@ -63,6 +70,66 @@ export function useTheme() {
   }, [])
 
   return { theme, toggle, setTheme: setThemeState }
+}
+
+interface UseInstallResult {
+  platform: Platform
+  browser: BrowserName
+  isStandalone: boolean
+  /** true quando o navegador oferece instalação em 1 toque (Chrome/Edge Android e Desktop) */
+  canInstallNatively: boolean
+  /** dispara o prompt nativo; resolve `true` se o usuário aceitou instalar */
+  promptInstall: () => Promise<boolean>
+  justInstalled: boolean
+}
+
+export function useInstall(): UseInstallResult {
+  const [platform] = useState<Platform>(() => detectPlatform())
+  const [browser] = useState<BrowserName>(() => detectBrowser())
+  const [isStandalone, setIsStandalone] = useState(() => isStandaloneDisplay())
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null)
+  const [justInstalled, setJustInstalled] = useState(false)
+
+  useEffect(() => {
+    const onBeforeInstall = (e: BeforeInstallPromptEvent) => {
+      e.preventDefault()
+      setDeferredPrompt(e)
+    }
+    const onInstalled = () => {
+      setJustInstalled(true)
+      setIsStandalone(true)
+      setDeferredPrompt(null)
+    }
+    const mql = window.matchMedia('(display-mode: standalone)')
+    const onDisplayModeChange = () => setIsStandalone(isStandaloneDisplay())
+
+    window.addEventListener('beforeinstallprompt', onBeforeInstall)
+    window.addEventListener('appinstalled', onInstalled)
+    mql.addEventListener('change', onDisplayModeChange)
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', onBeforeInstall)
+      window.removeEventListener('appinstalled', onInstalled)
+      mql.removeEventListener('change', onDisplayModeChange)
+    }
+  }, [])
+
+  const promptInstall = useCallback(async () => {
+    if (!deferredPrompt) return false
+    await deferredPrompt.prompt()
+    const { outcome } = await deferredPrompt.userChoice
+    setDeferredPrompt(null)
+    return outcome === 'accepted'
+  }, [deferredPrompt])
+
+  return {
+    platform,
+    browser,
+    isStandalone,
+    canInstallNatively: deferredPrompt !== null,
+    promptInstall,
+    justInstalled,
+  }
 }
 
 export function useFontSize() {

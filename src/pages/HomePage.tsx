@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { AppLogo, ThemeToggle } from '../components/AppLogo'
 import { EmptyStateHero, WhatsAppGuide } from '../components/EmptyState'
 import { FileDropZone } from '../components/FileDropZone'
-import { InstallInstructions, InstallPrompt } from '../components/InstallPrompt'
+import { InstallButton, InstallPrompt } from '../components/InstallPrompt'
 import { RecentFilesList } from '../components/RecentFilesList'
 import { useOpenFile, useRecentFiles, useTheme } from '../hooks'
 
@@ -34,14 +34,17 @@ export function HomePage({ openMode }: HomePageProps) {
       <header className="sticky top-0 z-20 border-b border-neutral-200/80 bg-white/85 backdrop-blur-md dark:border-dobbs-border/50 dark:bg-dobbs-bg/85">
         <div className="mx-auto flex max-w-2xl items-center justify-between px-4 py-3">
           <AppLogo size="sm" showWordmark />
-          <button
-            type="button"
-            onClick={toggle}
-            className="btn-ghost !px-3 !py-2"
-            aria-label="Alternar tema"
-          >
-            <ThemeToggle />
-          </button>
+          <div className="flex items-center gap-2">
+            <InstallButton />
+            <button
+              type="button"
+              onClick={toggle}
+              className="btn-ghost !px-3 !py-2"
+              aria-label="Alternar tema"
+            >
+              <ThemeToggle />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -71,8 +74,6 @@ export function HomePage({ openMode }: HomePageProps) {
         <RecentFilesList files={files} loading={loading} onDelete={remove} />
 
         <WhatsAppGuide />
-
-        <InstallInstructions />
 
         <footer className="pt-4 text-center text-xs text-neutral-400 dark:text-dobbs-subtle">
           Feito por{' '}
