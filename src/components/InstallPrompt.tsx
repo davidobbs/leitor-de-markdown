@@ -14,7 +14,7 @@ export function InstallPrompt() {
 
   return (
     <>
-      <div className="relative overflow-hidden rounded-2xl border border-dobbs-accent/25 bg-dobbs-surface p-4 dark:bg-dobbs-elevated/50">
+      <div className="panel-gradient relative overflow-hidden rounded-2xl border border-dobbs-accent/25 p-4">
         <div className="dobbs-glow pointer-events-none absolute inset-0 opacity-60" aria-hidden />
         <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-3">
@@ -61,7 +61,7 @@ export function InstallButton() {
       <button
         type="button"
         onClick={() => setModalOpen(true)}
-        className="inline-flex items-center gap-1.5 rounded-xl bg-dobbs-accent px-3 py-2 text-xs font-semibold text-dobbs-bg transition hover:bg-dobbs-accent-hover sm:text-sm"
+        className="inline-flex items-center gap-1.5 rounded-xl bg-[linear-gradient(135deg,var(--color-dobbs-accent),var(--color-dobbs-accent-hover))] px-3 py-2 text-xs font-semibold text-dobbs-bg shadow-[0_10px_34px_#00d4ff45] transition-all hover:brightness-105 sm:text-sm"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden>
           <path

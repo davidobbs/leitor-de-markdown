@@ -48,7 +48,7 @@ export function TableOfContents({ entries, open, onClose }: TableOfContentsProps
       )}
 
       <aside
-        className={`fixed top-0 right-0 z-50 h-full w-72 transform border-l border-neutral-200 bg-white p-4 shadow-xl transition-transform duration-200 dark:border-dobbs-border dark:bg-dobbs-surface ${
+        className={`panel-glass fixed top-0 right-0 z-50 h-full w-72 transform border-l p-4 shadow-xl transition-transform duration-200 ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
         aria-hidden={!open}

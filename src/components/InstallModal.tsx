@@ -228,7 +228,7 @@ export function InstallModal({ open, onClose }: InstallModalProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="install-modal-title"
-        className="dobbs-grid-bg relative w-full max-w-md rounded-t-3xl border border-neutral-200 bg-white p-6 shadow-2xl sm:rounded-3xl dark:border-dobbs-border dark:bg-dobbs-surface"
+        className="panel-glass dobbs-grid-bg relative w-full max-w-md rounded-t-3xl border p-6 shadow-2xl sm:rounded-3xl"
       >
         <button
           type="button"
@@ -244,7 +244,7 @@ export function InstallModal({ open, onClose }: InstallModalProps) {
           <div>
             <h2
               id="install-modal-title"
-              className="font-display text-lg font-bold text-neutral-900 dark:text-dobbs-text"
+              className="font-display text-lg font-semibold text-neutral-900 dark:text-dobbs-text"
             >
               Instalar Leitor MD
             </h2>

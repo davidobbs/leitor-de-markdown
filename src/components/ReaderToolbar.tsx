@@ -24,7 +24,7 @@ export function ReaderToolbar({
   onToggleToc,
 }: ReaderToolbarProps) {
   return (
-    <header className="sticky top-0 z-30 border-b border-neutral-200/80 bg-white/90 backdrop-blur-md dark:border-dobbs-border/50 dark:bg-dobbs-bg/90">
+    <header className="panel-glass sticky top-0 z-30 border-b">
       <div className="mx-auto flex max-w-3xl items-center gap-2 px-4 py-3">
         <button
           type="button"
@@ -48,7 +48,7 @@ export function ReaderToolbar({
           >
             A−
           </button>
-          <span className="hidden text-xs text-neutral-500 dark:text-dobbs-subtle sm:inline">
+          <span className="font-mono-brand hidden text-xs text-neutral-500 dark:text-dobbs-subtle sm:inline">
             {fontSize}%
           </span>
           <button

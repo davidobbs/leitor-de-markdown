@@ -58,22 +58,14 @@ export function LogoMark({ size = 512 }: { size?: number }) {
     >
       <defs>
         <linearGradient id="dobbsAccent" x1="8" y1="8" x2="88" y2="88" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#14F4C9" />
-          <stop offset="100%" stopColor="#06B6D4" />
+          <stop offset="0%" stopColor="#00A3FF" />
+          <stop offset="100%" stopColor="#00D4FF" />
         </linearGradient>
       </defs>
       <rect x="4" y="4" width="88" height="88" rx="22" fill="url(#dobbsAccent)" />
-      <text
-        x="48"
-        y="66"
-        textAnchor="middle"
-        fill="#0B1020"
-        fontFamily="'Space Grotesk', system-ui, sans-serif"
-        fontSize="44"
-        fontWeight="700"
-      >
-        M
-      </text>
+      {/* Lupa — ícone de assinatura recorrente da marca DOBBS */}
+      <circle cx="42" cy="42" r="15" fill="none" stroke="#05070A" strokeWidth="7" />
+      <line x1="53" y1="53" x2="66" y2="66" stroke="#05070A" strokeWidth="7" strokeLinecap="round" />
     </svg>
   )
 }

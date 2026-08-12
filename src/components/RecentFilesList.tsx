@@ -30,7 +30,7 @@ export function RecentFilesList({ files, loading, onDelete }: RecentFilesListPro
       <h2 className="mb-4 font-display text-base font-semibold text-neutral-900 dark:text-dobbs-text">
         Arquivos recentes
       </h2>
-      <ul className="divide-y divide-neutral-100 dark:divide-dobbs-border/60">
+      <ul className="divide-y divide-neutral-100 dark:divide-dobbs-border/15">
         {files.map((file) => (
           <li key={file.id} className="flex items-start gap-3 py-3 first:pt-0 last:pb-0">
             <Link

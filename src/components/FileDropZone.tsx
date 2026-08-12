@@ -50,7 +50,7 @@ export function FileDropZone({ onFiles, disabled }: FileDropZoneProps) {
         className={`group relative cursor-pointer overflow-hidden rounded-2xl border-2 border-dashed px-6 py-10 text-center transition-all duration-200 ${
           dragging
             ? 'scale-[1.01] border-dobbs-accent bg-dobbs-accent/10 shadow-lg shadow-dobbs-accent/10'
-            : 'border-neutral-300 hover:border-dobbs-accent/60 hover:bg-neutral-50 dark:border-dobbs-border dark:hover:border-dobbs-accent/50 dark:hover:bg-dobbs-surface/80'
+            : 'border-neutral-300 hover:border-dobbs-accent/60 hover:bg-neutral-50 dark:border-dobbs-border/30 dark:hover:border-dobbs-accent/50 dark:hover:bg-dobbs-surface/80'
         } ${disabled || loading ? 'pointer-events-none opacity-60' : ''}`}
       >
         <div

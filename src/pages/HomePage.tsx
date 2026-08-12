@@ -31,7 +31,7 @@ export function HomePage({ openMode }: HomePageProps) {
 
   return (
     <div className="dobbs-grid-bg min-h-dvh bg-neutral-50 dark:bg-dobbs-bg">
-      <header className="sticky top-0 z-20 border-b border-neutral-200/80 bg-white/85 backdrop-blur-md dark:border-dobbs-border/50 dark:bg-dobbs-bg/85">
+      <header className="panel-glass sticky top-0 z-20 border-b">
         <div className="mx-auto flex max-w-2xl items-center justify-between px-4 py-3">
           <AppLogo size="sm" showWordmark />
           <div className="flex items-center gap-2">
@@ -81,7 +81,7 @@ export function HomePage({ openMode }: HomePageProps) {
             href="https://dobbs.com.br"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-dobbs-accent hover:text-dobbs-accent-hover"
+            className="text-dobbs-accent transition-colors hover:text-signature-gold"
           >
             DOBBS
           </a>

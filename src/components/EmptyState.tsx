@@ -7,13 +7,13 @@ export function EmptyStateHero() {
       <div className="relative mx-auto mb-6 flex justify-center">
         <AppLogo size="xl" />
       </div>
-      <h1 className="font-display text-3xl font-bold tracking-tight text-neutral-900 dark:text-dobbs-text sm:text-4xl">
+      <h1 className="font-display text-3xl font-semibold tracking-tight text-neutral-900 dark:text-dobbs-text sm:text-4xl">
         Leitor MD
       </h1>
       <p className="mx-auto mt-3 max-w-md text-neutral-600 dark:text-dobbs-muted">
         Leitor de Markdown privado, rápido e instalável. Seus arquivos nunca saem do dispositivo.
       </p>
-      <p className="mt-2 text-xs font-medium uppercase tracking-widest text-dobbs-accent">
+      <p className="font-mono-brand mt-2 text-xs font-medium uppercase tracking-widest text-dobbs-accent">
         DOBBS · dobbs.com.br
       </p>
     </div>
@@ -35,7 +35,7 @@ export function WhatsAppGuide() {
 
       <div className="mt-4 space-y-4">
         <div className="rounded-xl bg-dobbs-accent/5 p-4 dark:bg-dobbs-accent/10">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-dobbs-accent">
+          <p className="font-mono-brand mb-2 text-xs font-semibold uppercase tracking-wide text-dobbs-accent">
             Android (recomendado)
           </p>
           <ol className="list-decimal space-y-1.5 pl-5 text-sm text-neutral-600 dark:text-dobbs-muted">
@@ -52,7 +52,7 @@ export function WhatsAppGuide() {
         </div>
 
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-dobbs-subtle">
+          <p className="font-mono-brand mb-2 text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-dobbs-subtle">
             iOS (limitado)
           </p>
           <p className="text-sm text-neutral-600 dark:text-dobbs-muted">

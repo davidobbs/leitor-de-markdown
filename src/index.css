@@ -6,25 +6,27 @@
   --font-sans: "Inter", system-ui, sans-serif;
   --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-serif: "Source Serif 4", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* DOBBS brand palette — extraída de dobbs.com.br (tailwind.config.ts) */
-  /* primary (grafite/azul-petróleo escuro) */
-  --color-dobbs-bg: #0b1020; /* primary-50 */
-  --color-dobbs-surface: #0f172a; /* primary-100 */
-  --color-dobbs-elevated: #1e293b; /* primary-200 */
-  --color-dobbs-line: #334155; /* primary-300 */
+  /* Paleta de assinatura — fundo quase preto + acento azul→ciano com glow */
+  --color-dobbs-bg: #05070a; /* fundo */
+  --color-dobbs-surface: #0b0f14; /* painel glass (usar com opacidade + blur) */
+  --color-dobbs-elevated: #111824; /* fundo elevado / cards */
+  --color-dobbs-border: #94a3b8; /* linha/grid — usar sempre com opacidade baixa */
 
-  /* accent (ciano/teal de tecnologia) */
-  --color-dobbs-accent: #14f4c9; /* accent-500 */
-  --color-dobbs-accent-hover: #22d3ee; /* accent-400 */
-  --color-dobbs-accent-muted: #06b6d4; /* accent-600 */
-  --color-dobbs-accent-deep: #0891b2; /* accent-700 */
+  /* acento de assinatura: gradiente 135deg entre os dois */
+  --color-dobbs-accent: #00a3ff; /* azul */
+  --color-dobbs-accent-hover: #00d4ff; /* ciano */
+  --color-dobbs-accent-deep: #0369a1; /* variante escura — contraste em fundo claro */
+  --color-dobbs-accent-muted: #0072b3;
 
-  /* neutral (texto em fundo escuro) */
-  --color-dobbs-text: #e5e7eb; /* neutral-200 */
-  --color-dobbs-muted: #9ca3af; /* neutral-400 */
-  --color-dobbs-subtle: #6b7280; /* neutral-500 */
-  --color-dobbs-border: #1f2937; /* neutral-800 — borda padrão do site */
+  /* dourado — uso pontual, "premium" */
+  --color-dobbs-gold: #d4af37;
+
+  /* texto em fundo escuro */
+  --color-dobbs-text: #f5f7fa;
+  --color-dobbs-muted: #cbd5e1;
+  --color-dobbs-subtle: #94a3b8;
 
   /* feedback */
   --color-dobbs-success: #10b981;
@@ -67,12 +69,16 @@ body {
   font-family: var(--font-display);
 }
 
+.font-mono-brand {
+  font-family: var(--font-mono);
+}
+
 :focus-visible {
   outline: 2px solid var(--color-dobbs-accent);
   outline-offset: 2px;
 }
 
-/* Scrollbar — mesmo tratamento do dobbs.com.br */
+/* Scrollbar — trilha escura, polegar em acento com glow sutil */
 .dark ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -83,43 +89,58 @@ body {
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: rgb(20 244 201 / 0.3);
+  background: rgb(0 163 255 / 0.35);
   border-radius: 9999px;
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: rgb(20 244 201 / 0.5);
+  background: rgb(0 212 255 / 0.5);
 }
 
+/* Textura tipo blueprint/circuito — grid bem sutil em slate */
 .dobbs-grid-bg {
   background-image:
-    linear-gradient(rgba(20, 244, 201, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 244, 201, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgb(148 163 184 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(148 163 184 / 0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
 }
 
 .dark .dobbs-grid-bg {
   background-image:
-    linear-gradient(rgba(20, 244, 201, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 244, 201, 0.06) 1px, transparent 1px);
+    linear-gradient(rgb(148 163 184 / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(148 163 184 / 0.08) 1px, transparent 1px);
 }
 
+/* Glow difuso azul→ciano — usado atrás de heros, CTAs e banners */
 .dobbs-glow {
-  background: radial-gradient(
-    ellipse 80% 50% at 50% -20%,
-    rgba(20, 244, 201, 0.15),
-    transparent
-  );
+  background:
+    radial-gradient(ellipse 60% 45% at 30% -10%, #00a3ff1a, transparent 70%),
+    radial-gradient(ellipse 60% 45% at 75% 15%, #00d4ff26, transparent 70%);
 }
 
 .card-surface {
-  @apply rounded-2xl border border-neutral-200 bg-white dark:border-dobbs-border/60 dark:bg-dobbs-surface;
+  @apply rounded-2xl border border-neutral-200 bg-white dark:border-dobbs-border/15 dark:bg-dobbs-elevated;
+}
+
+/* Gradiente de painel — superfícies de destaque (guia DOBBS, 145deg) */
+.panel-gradient {
+  background: linear-gradient(145deg, #080c12, #0c141e);
+}
+
+/* Painel translúcido com blur — header, modal, drawer */
+.panel-glass {
+  @apply border-neutral-200/80 bg-white/85 backdrop-blur-md dark:border-dobbs-border/15 dark:bg-dobbs-surface/80 dark:backdrop-blur-xl;
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center rounded-xl bg-dobbs-accent px-5 py-3 text-sm font-semibold text-dobbs-bg transition hover:bg-dobbs-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dobbs-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-dobbs-bg;
+  @apply inline-flex items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--color-dobbs-accent),var(--color-dobbs-accent-hover))] px-5 py-3 text-sm font-semibold text-dobbs-bg shadow-[0_18px_45px_#00a3ff59] transition-all duration-200 hover:brightness-105 hover:shadow-[0_10px_34px_#00d4ff45,0_18px_45px_#00a3ff59] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dobbs-accent focus-visible:ring-offset-2 active:translate-y-px dark:focus-visible:ring-offset-dobbs-bg;
 }
 
 .btn-ghost {
-  @apply inline-flex items-center justify-center rounded-xl border border-neutral-200 bg-transparent px-4 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 dark:border-dobbs-border dark:text-dobbs-text dark:hover:bg-dobbs-elevated;
+  @apply inline-flex items-center justify-center rounded-xl border border-neutral-200 bg-transparent px-4 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 dark:border-dobbs-border/25 dark:text-dobbs-text dark:hover:bg-dobbs-elevated;
+}
+
+/* Toque de assinatura — dourado, uso pontual (ex.: crédito de autoria) */
+.text-signature-gold {
+  color: var(--color-dobbs-gold);
 }
