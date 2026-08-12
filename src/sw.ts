@@ -7,6 +7,13 @@ declare let self: ServiceWorkerGlobalScope
 precacheAndRoute(self.__WB_MANIFEST)
 cleanupOutdatedCaches()
 
+// Ativa a nova versão do SW imediatamente e assume o controle das páginas
+// abertas, evitando conteúdo obsoleto preso em cache após um novo deploy.
+self.skipWaiting()
+self.addEventListener('activate', (event) => {
+  event.waitUntil(self.clients.claim())
+})
+
 async function handleSharePost(request: Request): Promise<Response> {
   try {
     const formData = await request.formData()
@@ -44,6 +51,6 @@ self.addEventListener('fetch', (event: FetchEvent) => {
 
 self.addEventListener('message', (event) => {
   if (event.data?.type === 'SKIP_WAITING') {
-    self.skipWaiting()
+    void self.skipWaiting()
   }
 })
