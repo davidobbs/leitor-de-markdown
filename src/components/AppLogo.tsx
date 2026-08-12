@@ -14,8 +14,10 @@ const sizes = {
 }
 
 /**
- * Marca do app — reaproveita o sistema visual do componente Logo (dobbs.com.br):
- * quadrado com gradiente accent-500→accent-600, glow suave e tipografia Space Grotesk.
+ * Marca do app — logo oficial DOBBS (logo-dobbs-icon.png).
+ * O arquivo-fonte tem fundo transparente; usamos um fundo branco para preservar
+ * o contraste original entre o "E" (navy escuro) e o "D" (gradiente azul→ciano),
+ * que se perderia sobre o fundo quase-preto do app.
  */
 export function AppLogo({ size = 'md', showWordmark = false, className = '' }: AppLogoProps) {
   const config = sizes[size]
@@ -27,7 +29,15 @@ export function AppLogo({ size = 'md', showWordmark = false, className = '' }: A
           className="absolute inset-0 rounded-xl bg-dobbs-accent/25 blur-md"
           aria-hidden
         />
-        <LogoMark size={config.icon} />
+        <div className="relative h-full w-full overflow-hidden rounded-xl bg-white shadow-lg shadow-dobbs-accent/20">
+          <img
+            src="/icons/logo-dobbs-icon.png"
+            alt="DOBBS"
+            width={config.icon}
+            height={config.icon}
+            className="h-full w-full object-contain p-[12%]"
+          />
+        </div>
       </div>
       {showWordmark && (
         <div className="flex flex-col">
@@ -41,41 +51,6 @@ export function AppLogo({ size = 'md', showWordmark = false, className = '' }: A
         </div>
       )}
     </div>
-  )
-}
-
-export function LogoMark({ size = 512 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 96 96"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label="Leitor MD"
-      className="relative"
-    >
-      <defs>
-        <linearGradient id="dobbsAccent" x1="8" y1="8" x2="88" y2="88" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#00A3FF" />
-          <stop offset="100%" stopColor="#00D4FF" />
-        </linearGradient>
-      </defs>
-      <rect x="4" y="4" width="88" height="88" rx="22" fill="url(#dobbsAccent)" />
-      {/* "D" — mesmo mark do ícone do dobbs.com.br (componente Logo, variante icon) */}
-      <text
-        x="48"
-        y="66"
-        textAnchor="middle"
-        fill="#05070A"
-        fontFamily="'Space Grotesk', system-ui, sans-serif"
-        fontSize="44"
-        fontWeight="700"
-      >
-        D
-      </text>
-    </svg>
   )
 }
 
