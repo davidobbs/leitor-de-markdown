@@ -1,77 +1,69 @@
 import { useState } from 'react'
 import { useInstall } from '../hooks'
-import { AppLogo } from './AppLogo'
 import { InstallModal } from './InstallModal'
 
-const DISMISS_KEY = 'leitor-install-dismissed'
-
-export function InstallPrompt() {
-  const { isStandalone } = useInstall()
-  const [modalOpen, setModalOpen] = useState(false)
-  const [dismissed, setDismissed] = useState(() => localStorage.getItem(DISMISS_KEY) === '1')
-
-  if (isStandalone || dismissed) return null
-
+function DownloadIcon() {
   return (
-    <>
-      <div className="panel-gradient relative overflow-hidden rounded-2xl border border-dobbs-accent/25 p-4">
-        <div className="dobbs-glow pointer-events-none absolute inset-0 opacity-60" aria-hidden />
-        <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-start gap-3">
-            <AppLogo size="sm" />
-            <div>
-              <p className="font-display font-semibold text-dobbs-text">Instale o Leitor MD</p>
-              <p className="mt-1 text-sm text-dobbs-muted">
-                Ícone na tela inicial, offline e abertura direta de .md do WhatsApp.
-              </p>
-            </div>
-          </div>
-          <div className="flex shrink-0 gap-2">
-            <button
-              type="button"
-              onClick={() => {
-                localStorage.setItem(DISMISS_KEY, '1')
-                setDismissed(true)
-              }}
-              className="btn-ghost"
-            >
-              Agora não
-            </button>
-            <button type="button" onClick={() => setModalOpen(true)} className="btn-primary">
-              Instalar app
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <InstallModal open={modalOpen} onClose={() => setModalOpen(false)} />
-    </>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"
+      />
+    </svg>
   )
 }
 
-/** Botão compacto para o cabeçalho — sempre visível enquanto o app não estiver instalado. */
+function SpinnerIcon() {
+  return (
+    <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+    </svg>
+  )
+}
+
+/**
+ * CTA única de instalação — um só botão, sempre no cabeçalho, que some
+ * automaticamente assim que o app é instalado.
+ *
+ * Ao clicar: se o navegador já expôs o prompt nativo (Chrome/Edge Android e
+ * Desktop), instala DIRETO — sem modal, sem passos, um toque e pronto. O
+ * modal com instruções só aparece como último recurso, quando o navegador
+ * ainda não liberou o prompt nativo (ex.: iOS/Safari, que nunca oferece essa
+ * API, ou um instante antes do Chrome liberar o evento).
+ */
 export function InstallButton() {
-  const { isStandalone } = useInstall()
+  const { isStandalone, canInstallNatively, promptInstall } = useInstall()
   const [modalOpen, setModalOpen] = useState(false)
+  const [installing, setInstalling] = useState(false)
 
   if (isStandalone) return null
+
+  const handleClick = async () => {
+    if (canInstallNatively) {
+      setInstalling(true)
+      try {
+        await promptInstall()
+      } finally {
+        setInstalling(false)
+      }
+      return
+    }
+    setModalOpen(true)
+  }
 
   return (
     <>
       <button
         type="button"
-        onClick={() => setModalOpen(true)}
-        className="inline-flex items-center gap-1.5 rounded-xl bg-[linear-gradient(135deg,var(--color-dobbs-accent),var(--color-dobbs-accent-hover))] px-3 py-2 text-xs font-semibold text-dobbs-bg shadow-[0_10px_34px_#00d4ff45] transition-all hover:brightness-105 sm:text-sm"
+        onClick={() => void handleClick()}
+        disabled={installing}
+        className="inline-flex items-center gap-1.5 rounded-xl bg-[linear-gradient(135deg,var(--color-dobbs-accent),var(--color-dobbs-accent-hover))] px-3 py-2 text-xs font-semibold text-dobbs-bg shadow-[0_10px_34px_#00d4ff45] transition-all hover:brightness-105 disabled:cursor-wait disabled:opacity-80 sm:text-sm"
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden>
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"
-          />
-        </svg>
-        Instalar
+        {installing ? <SpinnerIcon /> : <DownloadIcon />}
+        {installing ? 'Instalando…' : 'Instalar'}
       </button>
 
       <InstallModal open={modalOpen} onClose={() => setModalOpen(false)} />

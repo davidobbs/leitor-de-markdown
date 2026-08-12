@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { AppLogo, ThemeToggle } from '../components/AppLogo'
 import { EmptyStateHero, WhatsAppGuide } from '../components/EmptyState'
 import { FileDropZone } from '../components/FileDropZone'
-import { InstallButton, InstallPrompt } from '../components/InstallPrompt'
+import { InstallButton } from '../components/InstallPrompt'
 import { RecentFilesList } from '../components/RecentFilesList'
 import { useOpenFile, useRecentFiles, useTheme } from '../hooks'
 
@@ -60,8 +60,6 @@ export function HomePage({ openMode }: HomePageProps) {
             arquivos.
           </p>
         )}
-
-        <InstallPrompt />
 
         <FileDropZone onFiles={handleOpen} />
 
