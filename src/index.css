@@ -1,3 +1,4 @@
+:root { --build-cache-bust: 2; }
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
