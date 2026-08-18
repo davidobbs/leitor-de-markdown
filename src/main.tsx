@@ -1,4 +1,4 @@
-// cache-bust: leitor path fix
+console.info("leitor-md build 2026-08-18b");
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
