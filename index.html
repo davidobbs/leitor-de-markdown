@@ -19,7 +19,17 @@
           document.documentElement.classList.remove('dark');
       } catch (_) {}
     </script>
-  </head>
+      <meta property="og:type" content="website" />
+    <meta property="og:title" content="Leitor MD — Leitor de Markdown instalável" />
+    <meta property="og:description" content="PWA instalável (desktop e mobile) para leitura de arquivos Markdown (GFM). Processamento 100% client-side — nenhum arquivo sai do dispositivo." />
+    <meta property="og:url" content="https://dobbs.com.br/leitor" />
+    <meta property="og:image" content="https://dobbs.com.br/leitor/icons/icon-512.png" />
+    <meta property="og:site_name" content="DOBBS" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Leitor MD — Leitor de Markdown instalável" />
+    <meta name="twitter:description" content="PWA instalável (desktop e mobile) para leitura de arquivos Markdown (GFM). Processamento 100% client-side." />
+    <meta name="twitter:image" content="https://dobbs.com.br/leitor/icons/icon-512.png" />
+</head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
