@@ -18,7 +18,7 @@ const updateSW = registerSW({
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/leitor">
       <App />
     </BrowserRouter>
   </StrictMode>,
