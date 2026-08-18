@@ -1,5 +1,14 @@
 {
-"rewrites": [{ "source": "/((?!leitor/assets|leitor/icons|leitor/favicon\\.png|leitor/manifest\\.webmanifest|leitor/sw\\.js|leitor/workbox-.*|assets|icons|favicon\\.svg|manifest\\.webmanifest|sw\\.js|workbox-.*).*)", "destination": "/index.html" }],
+"rewrites": [
+{ "source": "/leitor/assets/:path*", "destination": "/assets/:path*" },
+{ "source": "/leitor/icons/:path*", "destination": "/icons/:path*" },
+{ "source": "/leitor/favicon.png", "destination": "/favicon.png" },
+{ "source": "/leitor/favicon.svg", "destination": "/favicon.svg" },
+{ "source": "/leitor/manifest.webmanifest", "destination": "/manifest.webmanifest" },
+{ "source": "/leitor/sw.js", "destination": "/sw.js" },
+{ "source": "/leitor/workbox-:hash*.js", "destination": "/workbox-:hash*.js" },
+{ "source": "/((?!leitor/assets|leitor/icons|leitor/favicon\\.png|leitor/favicon\\.svg|leitor/manifest\\.webmanifest|leitor/sw\\.js|leitor/workbox-.*|assets|icons|favicon\\.svg|manifest\\.webmanifest|sw\\.js|workbox-.*).*)", "destination": "/index.html" }
+],
 "headers": [
 {
 "source": "/(.*)",
