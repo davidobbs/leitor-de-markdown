@@ -32,7 +32,7 @@ export function AppLogo({ size = 'md', showWordmark = false, className = '' }: A
           aria-hidden
         />
         <img
-          src="/icons/logo-dobbs-icon-dark.png"
+          src={`${import.meta.env.BASE_URL}icons/logo-dobbs-icon-dark.png`}
           alt="DOBBS"
           width={config.icon}
           height={config.icon}
