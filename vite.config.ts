@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  base: '/leitor/',
   plugins: [
     react(),
     tailwindcss(),
@@ -21,32 +22,31 @@ export default defineConfig({
         background_color: '#05070A',
         display: 'standalone',
         orientation: 'any',
-        scope: '/',
-        start_url: '/',
-        lang: 'pt-BR',
+        scope: '/leitor/',
+        start_url: '/leitor/',
         categories: ['productivity', 'utilities'],
         icons: [
           {
-            src: '/icons/icon-192.png',
+            src: '/leitor/icons/icon-192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any',
           },
           {
-            src: '/icons/icon-512.png',
+            src: '/leitor/icons/icon-512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any',
           },
           {
-            src: '/icons/icon-512-maskable.png',
+            src: '/leitor/icons/icon-512-maskable.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable',
           },
         ],
         share_target: {
-          action: '/share',
+          action: '/leitor/share',
           method: 'POST',
           enctype: 'multipart/form-data',
           params: {
@@ -65,7 +65,7 @@ export default defineConfig({
         },
         file_handlers: [
           {
-            action: '/open',
+            action: '/leitor/open',
             accept: {
               'text/markdown': ['.md', '.markdown'],
               'text/plain': ['.md', '.markdown'],
